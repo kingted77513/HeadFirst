@@ -4,7 +4,7 @@ public class SimpleDotCom {
 	private int[] locationCells;
 	int numOfHits;
 	
-	String checkYourself(int guess) {
+	String checkYourself(String guess) {
 		return null;
 	}
 	

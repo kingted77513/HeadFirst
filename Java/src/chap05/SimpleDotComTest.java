@@ -12,7 +12,7 @@ class SimpleDotComTest {
 		int[] locations = {2, 3, 4};
         dot.setLocationCells(locations);
         
-        int userGuess = 2;
+        String userGuess = "2";
         String excepted = "hit";
         String actual = dot.checkYourself(userGuess);
         
