@@ -55,6 +55,7 @@ public class DotComBust {
             }
         }
         System.out.println(result);
+        helper.printMap();
     }
     
     private void finishGame() {

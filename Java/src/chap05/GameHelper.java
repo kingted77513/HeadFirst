@@ -76,4 +76,17 @@ public class GameHelper {
 		
 		return alphaCells;
 	}
+	
+	public void printMap() {
+		System.out.println("  " + alphabet);
+		System.out.println(" ---------");
+		for (int row = 0 ; row < gridLength ; row++) {
+			System.out.print(row + "|");
+			for (int column = 0 ; column < gridLength ; column++) {
+				System.out.print(grid[row * gridLength + column]);
+			}
+			System.out.println("|");
+		}
+		System.out.println(" ---------");
+	}
 }
