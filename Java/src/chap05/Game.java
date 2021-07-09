@@ -1,5 +1,7 @@
 package chap05;
 
+import java.util.ArrayList;
+
 public class Game {
     public static void main(String[] args)
     {
@@ -9,7 +11,7 @@ public class Game {
         SimpleDotCom theDotCom = new SimpleDotCom();
         int randomNum = (int) (Math.random() * 5);
         
-        int[] locations = {randomNum, randomNum+1, randomNum+2};
+        ArrayList<String> locations = creatLocations(randomNum);
         theDotCom.setLocationCells(locations);
         boolean isAlive = true;
         while (isAlive == true)
@@ -24,4 +26,12 @@ public class Game {
             }
         }
     }
+
+	private static ArrayList<String> creatLocations(int randomNum) {
+		ArrayList<String> locations = new ArrayList<String>();
+        locations.add(String.valueOf(randomNum));
+        locations.add(String.valueOf(randomNum+1));
+        locations.add(String.valueOf(randomNum+2));
+		return locations;
+	}
 }

@@ -2,6 +2,8 @@ package chap05;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 class SimpleDotComTest {
@@ -9,7 +11,7 @@ class SimpleDotComTest {
 	@Test
 	void testCheckYourselfWhenHit() {
 		SimpleDotCom dot = new SimpleDotCom();
-		int[] locations = {2, 3, 4};
+		ArrayList<String> locations = createSimpleLocations();
         dot.setLocationCells(locations);
         
         String userGuess = "2";
@@ -18,11 +20,19 @@ class SimpleDotComTest {
         
         assertEquals(excepted, actual);
 	}
+
+	private ArrayList<String> createSimpleLocations() {
+		ArrayList<String> locations = new ArrayList<String>();
+		locations.add("2");
+		locations.add("3");
+		locations.add("4");
+		return locations;
+	}
 	
 	@Test
 	void testCheckYourselfWhenMiss() {
 		SimpleDotCom dot = new SimpleDotCom();
-		int[] locations = {2, 3, 4};
+		ArrayList<String> locations = createSimpleLocations();
         dot.setLocationCells(locations);
         
         String userGuess = "5";
@@ -35,7 +45,7 @@ class SimpleDotComTest {
 	@Test
 	void testCheckYourselfWhenKill() {
 		SimpleDotCom dot = new SimpleDotCom();
-		int[] locations = {2};
+		ArrayList<String> locations = createSingleLocations();
         dot.setLocationCells(locations);
         
         String userGuess = "2";
@@ -43,6 +53,12 @@ class SimpleDotComTest {
         String actual = dot.checkYourself(userGuess);
         
         assertEquals(excepted, actual);
+	}
+	
+	private ArrayList<String> createSingleLocations() {
+		ArrayList<String> locations = new ArrayList<String>();
+		locations.add("2");
+		return locations;
 	}
 
 }
