@@ -10,7 +10,7 @@ class SimpleDotComTest {
 
 	@Test
 	void testCheckYourselfWhenHit() {
-		SimpleDotCom dot = new SimpleDotCom();
+		DotCom dot = new DotCom();
 		ArrayList<String> locations = createSimpleLocations();
         dot.setLocationCells(locations);
         
@@ -31,7 +31,7 @@ class SimpleDotComTest {
 	
 	@Test
 	void testCheckYourselfWhenMiss() {
-		SimpleDotCom dot = new SimpleDotCom();
+		DotCom dot = new DotCom();
 		ArrayList<String> locations = createSimpleLocations();
         dot.setLocationCells(locations);
         
@@ -44,7 +44,7 @@ class SimpleDotComTest {
 	
 	@Test
 	void testCheckYourselfWhenKill() {
-		SimpleDotCom dot = new SimpleDotCom();
+		DotCom dot = new DotCom();
 		ArrayList<String> locations = createSingleLocations();
         dot.setLocationCells(locations);
         
