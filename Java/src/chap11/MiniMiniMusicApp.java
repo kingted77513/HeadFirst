@@ -1,8 +1,7 @@
 package chap11;
 import javax.sound.midi.*;
 
-
-public class MiniMiniMusicApp {   // this is the first one
+public class MiniMiniMusicApp {
        
      public static void main(String[] args) {
         MiniMiniMusicApp mini = new MiniMiniMusicApp();
@@ -20,9 +19,6 @@ public class MiniMiniMusicApp {   // this is the first one
         
          Sequence seq = new Sequence(Sequence.PPQ, 4);
          Track track = seq.createTrack();     
-
-         // now make two midi events (containing a midi message)
-         MidiEvent event = null;
          
          // first make the message
          // then stick the message into a midi event 
