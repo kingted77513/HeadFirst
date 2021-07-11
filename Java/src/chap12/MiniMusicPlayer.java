@@ -3,9 +3,14 @@ import javax.sound.midi.*;
 
 // this one plays random music with it, but only because there is a listener.
 
-public class MiniMusicPlayer {
+public class MiniMusicPlayer implements ControllerEventListener{
 
 	public static void main(String[] args) {
+		MiniMusicPlayer mini = new MiniMusicPlayer();
+        mini.go();
+	}
+
+	private void go() {
 		try {
 
 			// make (and open) a sequencer, make a sequence and track
@@ -13,6 +18,9 @@ public class MiniMusicPlayer {
 			Sequencer sequencer = MidiSystem.getSequencer();         
 			sequencer.open();
 
+			int[] eventsIWant = {127};
+			sequencer.addControllerEventListener(this, eventsIWant);
+			
 			Sequence seq = new Sequence(Sequence.PPQ, 4);
 			Track track = seq.createTrack();     
 
@@ -21,6 +29,9 @@ public class MiniMusicPlayer {
 			for (int i = 5; i < 61; i+= 4) {
 
 				track.add(makeEvent(144,1,i,100,i));
+				
+				track.add(makeEvent(176,1,127,0,i));
+				
 				track.add(makeEvent(128,1,i,100,i + 2));
 			} // end loop
 
@@ -41,6 +52,11 @@ public class MiniMusicPlayer {
 			event = new MidiEvent(a, tick);
 		}catch(Exception e) { }
 		return event;
+	}
+
+	@Override
+	public void controlChange(ShortMessage event) {
+		System.out.println("la");
 	}
 
 } // close class
