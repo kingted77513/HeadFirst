@@ -1,62 +1,112 @@
 package chap12;
 import javax.sound.midi.*;
+import javax.swing.*;
+import java.awt.*;
 
-// this one plays random music with it, but only because there is a listener.
+  // this one plays random music with it, but only because there is a listener.
 
-public class MiniMusicPlayer implements ControllerEventListener{
+public class MiniMusicPlayer {
 
-	public static void main(String[] args) {
-		MiniMusicPlayer mini = new MiniMusicPlayer();
-        mini.go();
-	}
+    static JFrame f = new JFrame("My First Music Video");
+    static MyDrawPanel ml;
 
-	private void go() {
-		try {
+    public static void main(String[] args) {
+           MiniMusicPlayer mini = new MiniMusicPlayer();
+           mini.go();
+     }
+   
+ 
+     public  void setUpGui() {
+       ml = new MyDrawPanel();
+       f.setContentPane(ml);
+       f.setBounds(30,30, 300,300);
+       f.setVisible(true);
+    }
+ 
 
-			// make (and open) a sequencer, make a sequence and track
+    public void go() {
+       setUpGui();
 
-			Sequencer sequencer = MidiSystem.getSequencer();         
-			sequencer.open();
+       try {
 
-			int[] eventsIWant = {127};
-			sequencer.addControllerEventListener(this, eventsIWant);
-			
-			Sequence seq = new Sequence(Sequence.PPQ, 4);
-			Track track = seq.createTrack();     
+         // make (and open) a sequencer, make a sequence and track
 
-			// now make two midi events (containing a midi message)
+         Sequencer sequencer = MidiSystem.getSequencer();         
+         sequencer.open();
+        
+         sequencer.addControllerEventListener(ml, new int[] {127});
+         Sequence seq = new Sequence(Sequence.PPQ, 4);
+         Track track = seq.createTrack();     
 
-			for (int i = 5; i < 61; i+= 4) {
+         // now make two midi events (containing a midi message)
 
-				track.add(makeEvent(144,1,i,100,i));
-				
-				track.add(makeEvent(176,1,127,0,i));
-				
-				track.add(makeEvent(128,1,i,100,i + 2));
-			} // end loop
+      int r = 0;
+      for (int i = 0; i < 60; i+= 4) {
 
-			// add the events to the track            
-			// add the sequence to the sequencer, set timing, and start
+          r = (int) ((Math.random() * 50) + 1);
+         
+          track.add(makeEvent(144,1,r,100,i));
+        
+          track.add(makeEvent(176,1,127,0,i));
+         
+          track.add(makeEvent(128,1,r,100,i + 2));
+       } // end loop
+        
+          // add the events to the track            
+          // add the sequence to the sequencer, set timing, and start
 
-			sequencer.setSequence(seq);
-			sequencer.setTempoInBPM(220);
-			sequencer.start();
-		} catch (Exception ex) {ex.printStackTrace();}
-	}
+          sequencer.setSequence(seq);
+ 
+          sequencer.start();
+          sequencer.setTempoInBPM(120);
+      } catch (Exception ex) {ex.printStackTrace();}
+  } // close go
 
-	private static MidiEvent makeEvent(int comd, int chan, int one, int two, int tick) {
-		MidiEvent event = null;
-		try {
-			ShortMessage a = new ShortMessage();
-			a.setMessage(comd, chan, one, two);
-			event = new MidiEvent(a, tick);
-		}catch(Exception e) { }
-		return event;
-	}
 
-	@Override
-	public void controlChange(ShortMessage event) {
-		System.out.println("la");
-	}
+   public MidiEvent makeEvent(int comd, int chan, int one, int two, int tick) {
+          MidiEvent event = null;
+          try {
+            ShortMessage a = new ShortMessage();
+            a.setMessage(comd, chan, one, two);
+            event = new MidiEvent(a, tick);
+            
+          }catch(Exception e) { }
+          return event;
+       }
+
+
+
+ @SuppressWarnings("serial")
+class MyDrawPanel extends JPanel implements ControllerEventListener {
+      
+      // only if we got an event do we want to paint
+      boolean msg = false;
+
+      public void controlChange(ShortMessage event) {
+         msg = true;       
+         repaint();         
+      }
+
+      public void paintComponent(Graphics g) {
+       if (msg) {
+            
+         int r = (int) (Math.random() * 250);
+         int gr = (int) (Math.random() * 250);
+         int b = (int) (Math.random() * 250);
+
+         g.setColor(new Color(r,gr,b));
+
+         int ht = (int) ((Math.random() * 120) + 10);
+         int width = (int) ((Math.random() * 120) + 10);
+
+         int x = (int) ((Math.random() * 40) + 10);
+         int y = (int) ((Math.random() * 40) + 10);
+         
+         g.fillRect(x,y,ht, width);
+         msg = false;
+
+       } // close if
+     } // close method
+   }  // close inner class
 
 } // close class
