@@ -13,6 +13,7 @@ public class BorderLayoutTest {
 	public void go() {
 		JFrame frame = new JFrame();
 		JButton east = new JButton("East");
+		JButton east_LongName = new JButton("Long East");
 		JButton west = new JButton("West");
 		JButton north = new JButton("North");
 		JButton south = new JButton("South");
@@ -20,6 +21,7 @@ public class BorderLayoutTest {
 		
 		Container cp = frame.getContentPane();
 		cp.add(BorderLayout.EAST, east);
+		cp.add(BorderLayout.EAST, east_LongName);
 		cp.add(BorderLayout.WEST, west);
 		cp.add(BorderLayout.NORTH, north);
 		cp.add(BorderLayout.SOUTH, south);
