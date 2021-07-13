@@ -15,9 +15,10 @@ public class FlowLayoutTest {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		
-		JButton button = new JButton("Button");
-		
-		panel.add(button);
+		JButton button1 = new JButton("Button1");
+		JButton button2 = new JButton("Button2");
+		panel.add(button1);
+		panel.add(button2);
 		
 		frame.getContentPane().add(BorderLayout.EAST, panel);
 		frame.setSize(200, 200);
