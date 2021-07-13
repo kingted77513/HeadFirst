@@ -14,6 +14,7 @@ public class FlowLayoutTest {
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		JButton button1 = new JButton("Button1");
 		JButton button2 = new JButton("Button2");
