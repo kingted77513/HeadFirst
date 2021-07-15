@@ -28,9 +28,17 @@ public class Jukebox
         Collections.sort(songList, artistCompare);
         System.out.println("Artist¦r¥À¶¶§Ç¡G" + songList);
         
-        HashSet<Song> songSet = new HashSet<Song>();
-        songSet.addAll(songList);
-        System.out.println("Set¡G" + songSet);
+        HashSet<Song> songHashSet = new HashSet<Song>();
+        songHashSet.addAll(songList);
+        System.out.println("Hash Set¡G" + songHashSet);
+        
+        TreeSet<Song> songTreeSet = new TreeSet<Song>();
+        songTreeSet.addAll(songList);
+        System.out.println("Tree Set (Title¦r¥À¶¶§Ç)¡G" + songTreeSet);
+        
+        songTreeSet = new TreeSet<Song>(artistCompare);
+        songTreeSet.addAll(songList);
+        System.out.println("Tree Set (Artist¦r¥À¶¶§Ç)¡G" + songTreeSet);
     }
     
     void getSongs() {
