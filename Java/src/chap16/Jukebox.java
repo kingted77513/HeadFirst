@@ -19,15 +19,18 @@ public class Jukebox
     
     public void go() {
         getSongs();
-        System.out.println(songList);
+        System.out.println("­ì©l¶¶§Ç¡G" + songList);
         
         Collections.sort(songList);
-        System.out.println(songList);
+        System.out.println("Title¦r¥À¶¶§Ç¡G" + songList);
         
         ArtistCompare artistCompare = new ArtistCompare();
         Collections.sort(songList, artistCompare);
+        System.out.println("Artist¦r¥À¶¶§Ç¡G" + songList);
         
-        System.out.println(songList);
+        HashSet<Song> songSet = new HashSet<Song>();
+        songSet.addAll(songList);
+        System.out.println("Set¡G" + songSet);
     }
     
     void getSongs() {
