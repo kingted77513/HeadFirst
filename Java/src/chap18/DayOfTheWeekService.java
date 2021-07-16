@@ -2,14 +2,14 @@ package chap18;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
-import java.io.*;
 import java.util.*;
 import java.text.*;
 
+@SuppressWarnings("serial")
 public class DayOfTheWeekService implements Service {
 
     JLabel outputLabel;
-    JComboBox month;
+    JComboBox<String> month;
     JTextField day;
     JTextField year;
 
@@ -20,7 +20,7 @@ public class DayOfTheWeekService implements Service {
        outputLabel = new JLabel("date appears here");
        
        DateFormatSymbols dateStuff = new DateFormatSymbols();      
-       month = new JComboBox(dateStuff.getMonths());
+       month = new JComboBox<String>(dateStuff.getMonths());
        day = new JTextField(8);
        year = new JTextField(8);
 
@@ -51,10 +51,8 @@ public class DayOfTheWeekService implements Service {
            String dayOfWeek = (new SimpleDateFormat("EEEE")).format(date);
            outputLabel.setText(dayOfWeek);
            
-               
       }
     }
-       
 }
          
        

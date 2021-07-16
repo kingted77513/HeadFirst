@@ -4,12 +4,10 @@ import javax.swing.*;
 import java.rmi.*;
 import java.awt.event.*;
 
-
-
 public class ServiceBrowser {
 
    JPanel mainPanel;
-   JComboBox serviceList;
+   JComboBox<Object> serviceList;
    ServiceServer server;
 
    public void buildGUI() {
@@ -19,7 +17,7 @@ public class ServiceBrowser {
       
       Object[] services = getServicesList();
   
-      serviceList = new JComboBox(services);
+      serviceList = new JComboBox<Object>(services);
       frame.getContentPane().add(BorderLayout.NORTH, serviceList);
 
       serviceList.addActionListener(new MyListListener());     

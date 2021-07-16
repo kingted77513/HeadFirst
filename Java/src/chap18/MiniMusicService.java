@@ -1,16 +1,13 @@
 package chap18;
 import javax.sound.midi.*;
-import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-
+@SuppressWarnings("serial")
 public class MiniMusicService implements Service {
 
-    
     MyDrawPanel myPanel;
-
 
    public JPanel getGuiPanel() {
        
@@ -98,8 +95,6 @@ public class MiniMusicService implements Service {
       public void paintComponent(Graphics g) {
        if (msg) {
             
-         Graphics2D g2 = (Graphics2D) g;
-
          int r = (int) (Math.random() * 250);
          int gr = (int) (Math.random() * 250);
          int b = (int) (Math.random() * 250);

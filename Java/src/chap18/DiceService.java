@@ -1,18 +1,18 @@
 package chap18;
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.*;
 
+@SuppressWarnings("serial")
 public class DiceService implements Service {
 
     JLabel label;
-    JComboBox numOfDice;
+    JComboBox<String> numOfDice;
 
     public JPanel getGuiPanel() {
        JPanel panel = new JPanel();
        JButton button = new JButton("Roll 'em!");
        String[] choices = {"1", "2", "3", "4", "5"};
-       numOfDice = new JComboBox(choices);
+       numOfDice = new JComboBox<String>(choices);
        label = new JLabel("dice values here");
        button.addActionListener(new RollEmListener());
        panel.add(numOfDice);
